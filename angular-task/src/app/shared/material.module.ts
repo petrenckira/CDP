@@ -8,6 +8,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
+  MatTableModule,
   MatButtonModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -23,7 +24,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   declarations: [],
   exports:[
@@ -36,7 +38,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}

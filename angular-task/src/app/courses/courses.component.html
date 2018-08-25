@@ -1,55 +1,63 @@
-<mat-sidenav-container>
-  <mat-sidenav  #sidenav role="navigation">
-    <mat-nav-list>
-      <a mat-list-item>
-        <mat-icon class="icon">input</mat-icon>
-        <span class="label">Login</span>
-      </a>
-      <a mat-list-item>
-        <mat-icon class="icon">home</mat-icon>
-        <span class="label">Home</span>
-      </a>
-      <a mat-list-item>
-        <mat-icon class="icon">dashboard</mat-icon>
-        <span class="label">Dashboard</span>
-      </a>
-      <a  mat-list-item type="button">
-        <mat-icon class="icon">input</mat-icon>
-        <span class="label">LogOut</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div fxHide.gt-xs>
-        <button mat-icon-button>
-          <mat-icon>menu</mat-icon>
+<app-header></app-header>
+
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between center" class="card">
+      <mat-card-content>
+        <form action="">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Search">
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" class="btn-search">Search</button>
+        </form>
+      </mat-card-content>
+      <div>
+        <button button="submit" mat-raised-button color="primary" class="btn-add">
+          <mat-icon>add</mat-icon>
+          Add Course
         </button>
       </div>
-      <div>
-        <a>
-          Material Blog
-        </a>
-      </div>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+    </mat-card>
+  </div>
+</div>
 
-          <li>
-            <a>
-              <mat-icon class="icon">dashboard</mat-icon>
-              <span class="label">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <mat-icon class="icon">input</mat-icon>
-              <span class="label">LogOut</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </mat-toolbar>
-    <main>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<br>
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>Courses</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="example-container mat-elevation-z8">
+          <mat-table>
+            <ng-container matColumnDef="date_posted">
+              <mat-header-cell > Date Posted</mat-header-cell>
+              <mat-cell></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="title">
+              <mat-header-cell > Title</mat-header-cell>
+              <mat-cell > </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="category">
+              <mat-header-cell> Category</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.category}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <a
+                  type="button">
+                  <mat-icon class="icon">delete</mat-icon>
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

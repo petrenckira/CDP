@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from './../shared/shared.module';
-// import {CoursesRoutingModule}
 
 import {CourseComponent} from './../course/course.component';
 import {CoursesComponent} from './courses.component';

@@ -4,11 +4,9 @@ import {NgModule} from '@angular/core';
 /* App Root */
 import {AppComponent} from './app.component';
 
-import {LoginComponent} from './login/login.component';
-
 /* Feature Modules */
-import {UserModule} from './user/user.module';
 import {CoursesModule} from './courses/courses.module';
+import {LoginModule} from './login/login.module';
 
 // Shared Module
  import {SharedModule} from './shared/shared.module';
@@ -20,14 +18,13 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule,
     SharedModule,
-    UserModule,
     CoursesModule,
+    LoginModule,
     AppRoutingModule
   ],
   providers: [],
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })
