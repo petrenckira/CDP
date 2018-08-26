@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MaterialModule} from './material.module';
 
 import {HeaderComponent} from '../common/header/header.component';
@@ -10,6 +10,7 @@ import {HeaderComponent} from '../common/header/header.component';
     MaterialModule
   ],
   declarations: [HeaderComponent],
-  exports:[CommonModule,MaterialModule, HeaderComponent]
+  exports: [CommonModule, MaterialModule, HeaderComponent]
 })
-export class SharedModule { }
+export class SharedModule {
+}

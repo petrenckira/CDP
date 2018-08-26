@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatSidenavModule,
@@ -11,6 +11,8 @@ import {
   MatTableModule,
   MatButtonModule
 } from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
@@ -25,10 +27,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [],
-  exports:[
+  exports: [
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -39,7 +43,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
-export class MaterialModule {}
+export class MaterialModule {
+}

@@ -5,10 +5,12 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 // import {CoursesModule} from "./courses/courses.module";
 
+import {AuthGuard} from './guards/auth.guard';
+
 export const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'courses', loadChildren: './courses/courses.module#CoursesModule'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'courses', loadChildren: './courses/courses.module#CoursesModule', canActivate: [AuthGuard]},
 ];
 
 @NgModule({
@@ -18,4 +20,5 @@ export const routes: Routes = [
 
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

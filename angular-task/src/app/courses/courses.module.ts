@@ -6,12 +6,15 @@ import {CoursesComponent} from './courses.component';
 import {CoursesRoutingModule} from './courses-routing.module';
 
 import {CoursesService} from './courses.service';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 
 @NgModule({
   imports: [
     SharedModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CourseComponent,

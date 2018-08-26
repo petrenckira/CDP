@@ -9,10 +9,16 @@ import {CoursesModule} from './courses/courses.module';
 import {LoginModule} from './login/login.module';
 
 // Shared Module
- import {SharedModule} from './shared/shared.module';
+import {SharedModule} from './shared/shared.module';
 
 /* Routing Module */
 import {AppRoutingModule} from './app-routing.module';
+
+import {FakeBackendInterceptor} from './helpers/fake-backend';
+import {JwtInterceptor} from './helpers/jwt-interceptor';
+
+// import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -20,9 +26,17 @@ import {AppRoutingModule} from './app-routing.module';
     SharedModule,
     CoursesModule,
     LoginModule,
+    // ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    FakeBackendInterceptor
+  ],
   declarations: [
     AppComponent
   ],
