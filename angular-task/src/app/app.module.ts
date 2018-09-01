@@ -14,7 +14,7 @@ import {SharedModule} from './shared/shared.module';
 /* Routing Module */
 import {AppRoutingModule} from './app-routing.module';
 
-import {FakeBackendInterceptor} from './helpers/fake-backend';
+import {fakeBackendProvider} from './helpers/fake-backend';
 import {JwtInterceptor} from './helpers/jwt-interceptor';
 
 // import {ReactiveFormsModule} from '@angular/forms';
@@ -35,7 +35,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    FakeBackendInterceptor
+    fakeBackendProvider
   ],
   declarations: [
     AppComponent

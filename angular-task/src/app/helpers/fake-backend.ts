@@ -4,7 +4,6 @@ import {Observable, of, throwError} from 'rxjs';
 import {delay, mergeMap, materialize, dematerialize} from 'rxjs/operators';
 
 import {IUser} from '../models/user';
-import {ICourse} from '../models/course';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -20,6 +19,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         courses: [
           {
             id: 1,
+            name: 'Course ',
+            duration: 123,
+            date: new Date(),
+            description: 'lorem',
+            authors: ['I', 'Me', 'Myself']
+          },
+          {
+            id: 2,
             name: 'Course ',
             duration: 123,
             date: new Date(),
@@ -56,12 +63,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.endsWith('/courses') && request.method === 'GET') {
         // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-          return of(new HttpResponse({status: 200, body: [user.courses]}));
+          return of(new HttpResponse({status: 200, body: user.courses}));
         } else {
           // return 401 not authorised if token is null or invalid
           return throwError({error: {message: 'Unauthorised'}});
         }
       }
+
+      // if (request.url.endsWith('/courses') && request.method === 'POST' ) {
+      //   // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+      //   if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+      //     return of(new HttpResponse({status: 200, body: user.courses}));
+      //   } else {
+      //     // return 401 not authorised if token is null or invalid
+      //     return throwError({error: {message: 'Unauthorised'}});
+      //   }
+      // }
 
       // pass through any requests not handled above
       return next.handle(request);
@@ -81,3 +98,4 @@ export let fakeBackendProvider = {
   useClass: FakeBackendInterceptor,
   multi: true
 };
+
