@@ -6,35 +6,28 @@ import {AppComponent} from './app.component';
 
 /* Feature Modules */
 import {CoursesModule} from './courses/courses.module';
-import {LoginModule} from './login/login.module';
-
-// Shared Module
-import {SharedModule} from './shared/shared.module';
+import {LoginModule} from './core/login/login.module';
 
 /* Routing Module */
 import {AppRoutingModule} from './app-routing.module';
 
-import {fakeBackendProvider} from './helpers/fake-backend';
-import {JwtInterceptor} from './helpers/jwt-interceptor';
+import {fakeBackendProvider} from './core/services/fake-backend';
+import {JwtInterceptor} from './core/services/jwt-interceptor';
+import {ErrorInterceptor} from "./core/services/error.interceptor";
 
-// import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
-    SharedModule,
     CoursesModule,
     LoginModule,
-    // ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider
   ],
   declarations: [

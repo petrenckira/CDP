@@ -4,5 +4,5 @@ export interface ICourse {
   duration: number;
   date: Date;
   description: string;
-  authors: Array<string>;
+  authors: string;
 }

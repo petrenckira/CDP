@@ -6,7 +6,7 @@ import {CourseComponent} from '../course/course.component';
 
 const routes: Routes = [
   {
-    path: 'courses', //component: UserComponent,
+    path: 'courses',
     children: [
       {path: '', component: CoursesComponent},
       {path: ':id', component: CourseComponent},

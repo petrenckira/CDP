@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CoursesService} from './courses.service';
-import {ICourse} from '../models/course';
+import {ICourse} from '../core/models/course';
 
 @Component({
   selector: 'app-courses',
@@ -19,5 +19,9 @@ export class CoursesComponent implements OnInit {
       this.courses = courses;
       console.log(this.courses);
     });
+  }
+
+  removeCourse(id) {
+    this.coursesService.deleteCourse(id).pipe().subscribe(courses =>  this.courses = courses);
   }
 }
