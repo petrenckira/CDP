@@ -15,7 +15,7 @@ export class CourseComponent implements OnInit {
   courseForm: FormGroup;
   submitted = false;
   loading = false;
-  returnUrl: string;
+  returnUrl: string = '/courses';
   id: number;
   error = '';
 
@@ -84,7 +84,6 @@ export class CourseComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            console.log(data);
             this.router.navigate([this.returnUrl]);
           },
           error => {
@@ -98,7 +97,6 @@ export class CourseComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
