@@ -4,6 +4,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {CoursesComponent} from './courses.component';
 import {CourseComponent} from '../course/course.component';
 
+import {AuthGuard} from '../core/services/auth.guard';
+
 const routes: Routes = [
   {
     path: 'courses',
@@ -11,10 +13,9 @@ const routes: Routes = [
       {path: '', component: CoursesComponent},
       {path: ':id', component: CourseComponent},
       {path: 'new', component: CourseComponent}
-    ]
-  },
-  {path: '', redirectTo: 'courses', pathMatch: 'full'},
-];
+    ],
+    canActivate: [AuthGuard]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

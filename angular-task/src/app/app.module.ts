@@ -13,9 +13,20 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {fakeBackendProvider} from './core/services/fake-backend';
 import {JwtInterceptor} from './core/services/jwt-interceptor';
-import {ErrorInterceptor} from "./core/services/error.interceptor";
+import {ErrorInterceptor} from './core/services/error.interceptor';
 
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+
+// @ngrx
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+
+// effects
+import {UserEffects} from './core/store/login/login.effects';
+
+// reducers
+import {reducers} from './app.reducers';
 
 @NgModule({
   imports: [

@@ -10,7 +10,7 @@ import {AuthGuard} from './core/services/auth.guard';
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'courses', loadChildren: './courses/courses.module#CoursesModule', canActivate: [AuthGuard]},
+  {path: 'courses', loadChildren: './courses/courses.module#CoursesModule'},
 ];
 
 @NgModule({

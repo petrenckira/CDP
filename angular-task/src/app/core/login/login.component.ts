@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
   error = '';
 
   constructor(
@@ -30,8 +29,6 @@ export class LoginComponent implements OnInit {
     });
 
     this.authenticationService.logout();
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   get f() { return this.loginForm.controls; }
@@ -48,7 +45,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/courses']);
         },
         error => {
           this.error = error;

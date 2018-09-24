@@ -3,21 +3,21 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import {LoginService} from "./login.service";
+import {LoginService} from './login.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: LoginService) {}
+  constructor(private loginService: LoginService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {
-        this.authenticationService.logout();
+        this.loginService.logout();
         location.reload(true);
       }
 
       const error = err.error.message || err.statusText;
       return throwError(error);
-    }))
+    }));
   }
 }
