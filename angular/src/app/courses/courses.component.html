@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card fxLayout="row" fxLayoutAlign="space-between center" class="card">
+      <mat-card-content>
+        <form action="">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Search">
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" class="btn-search">Search</button>
+        </form>
+      </mat-card-content>
+      <div>
+        <button mat-raised-button color="primary" class="btn-add" routerLink="/courses/new">
+          <mat-icon>add</mat-icon>
+          Add Course
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<br>
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <div class="wrapper" >
+    <h1>Courses</h1>
+    <div *ngFor="let course of courses">
+      <div class="course" fxLayout="row" fxLayoutAlign="space-between stretch">
+        <div class="course-info">
+          <div fxLayout="row" fxLayoutAlign="space-between baseline">
+            <h3>{{course.name}}</h3>
+            <p>{{course.duration}}</p>
+            <p>{{course.date | date : "dd.mm.yyyy."}}</p>
+          </div>
+          <p>{{course.description}}</p>
+        </div>
+        <div class="course-btn" fxLayout="column" fxLayoutAlign="space-around flex-end">
+          <a mat-raised-button color="primary"  routerLink="/courses/{{course.id}}">Edit</a>
+          <button mat-raised-button color="warn" (click)="removeCourse(course.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+  <div fxLayout="column" fxLayoutAlign="center center"class="wrapper">
+    <h1>Course info</h1>
+    <form class="form-course" [formGroup]="courseForm" (ngSubmit)="onSubmit() ">
+      <div class="form-control">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" formControlName="name" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" formControlName="description" placeholder="Description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+        </mat-form-field>
+        <!--<div *ngIf="submitted && f.description.errors" class="invalid-feedback">-->
+          <!--<div *ngIf="f.description.errors.required">First Name is required</div>-->
+        <!--</div>-->
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f.data.errors }">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="submitted && f.data.errors" class="invalid-feedback">
+          <div *ngIf="f.data.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" formControlName="duration" placeholder="Duration" [ngClass]="{ 'is-invalid': submitted && f.duration.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+          <div *ngIf="f.duration.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+        <button mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
