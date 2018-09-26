@@ -8,7 +8,12 @@ import {CoursesRoutingModule} from './courses-routing.module';
 import {CoursesService} from './courses.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
+
+import {ListEffects} from '../core/store/courses/list/list.effects';
+import {reducers} from '../core/store/courses/list/list.state';
 
 
 @NgModule({
@@ -17,6 +22,8 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     CoursesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forFeature('courses', reducers),
+    EffectsModule.forFeature([ListEffects])
   ],
   declarations: [
     CourseComponent,

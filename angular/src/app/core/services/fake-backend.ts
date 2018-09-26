@@ -57,18 +57,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       if (request.url.endsWith('/login') && request.method === 'POST') {
         if (request.body.username === user.username && request.body.password === user.password) {
-          // let body: IUser = {
-          //   id: user.id,
-          //   username: user.username,
-          //   password: user.password,
-          //   courses: user.courses,
-          //   token: 'fake-jwt-token'
-          // };
-
-          let body: User = {
+          let body: IUser = {
+            id: user.id,
             username: user.username,
+            password: user.password,
+            courses: user.courses,
             token: 'fake-jwt-token'
           };
+
+          // let body: User = {
+          //   username: user.username,
+          //   token: 'fake-jwt-token'
+          // };
           return of(new HttpResponse({status: 200, body}));
         } else {
           return throwError({error: {message: 'Username or password is incorrect'}});
@@ -79,8 +79,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.endsWith('/courses') && request.method === 'GET') {
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          console.log(currentUser.courses);
           return of(new HttpResponse({status: 200, body: currentUser.courses}));
         } else {
+          console.log('its so bad');
           return throwError({error: {message: 'Unauthorised'}});
         }
       }

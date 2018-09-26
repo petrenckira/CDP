@@ -7,7 +7,6 @@ import {Action} from '@ngrx/store';
 // import rxjs
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs';
-// import {tap} from 'rxjs/internal/operators';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 
 // router
@@ -16,15 +15,12 @@ import {Router} from '@angular/router';
 // service
 import {LoginService} from '../../services/login.service';
 
-// import {AppState} from '../../../app.reducers';
 
 
 import {
   ActionTypes,
   LoginAction,
-  // AuthenticatedAction,
   LoginSuccessAction,
-  // AuthenticatedSuccessAction,
   LoginErrorAction,
 } from './login.actions';
 
@@ -63,16 +59,4 @@ export class LoginEffects {
     })
   );
 
-  // @Effect()
-  // public authenticated: Observable<Action> = this.actions
-  //   .pipe(
-  //   ofType<AuthenticatedAction>(ActionTypes.AUTHENTICATED),
-  //     map(action => action.payload),
-  //     switchMap(payload => {
-  //       return this.userService.authenticated().pipe(
-  //         map(user => new AuthenticatedSuccessAction({authenticated: (user !== null), user: user}))
-  //         // catch (error => of(new LoginErrorAction({error: error})))
-  //       );
-  //     }
-  //   ));
 }

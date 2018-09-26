@@ -24,12 +24,12 @@ export class CoursesService {
     return this.http.post<ICourse>(`/courses/${id}`, body);
   }
 
-  createCourse(body){
+  createCourse(body) {
     console.log(body);
     return this.http.post<ICourse>(`/courses/new`, body);
   }
 
-  deleteCourse(id){
+  deleteCourse(id) {
     return this.http.post<ICourse[]>(`/courses`, id);
   }
 }

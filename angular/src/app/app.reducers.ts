@@ -22,7 +22,6 @@ import {
 
 export interface AppState {
   router: fromRouter.RouterReducerState;
-  // userFullInfo: userState.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {

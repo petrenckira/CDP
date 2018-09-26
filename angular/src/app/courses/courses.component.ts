@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {CoursesService} from './courses.service';
 import {ICourse} from '../core/models/course';
+
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import * as ListActions from './../core/store/courses/list/list.actions';
+import * as fromList from './../core/store/courses/list/list.state';
+
+
 
 @Component({
   selector: 'app-courses',
@@ -9,18 +16,17 @@ import {ICourse} from '../core/models/course';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: Array<ICourse> = [];
+  courses: Observable<ICourse[]>;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private store: Store<fromList.State>) {
+    this.courses = store.pipe(select(fromList.getListCourses));
   }
 
   ngOnInit() {
-    this.coursesService.getAll().pipe().subscribe((courses) => {
-      this.courses = courses;
-    });
+    this.store.dispatch(new ListActions.Load());
   }
 
-  removeCourse(id) {
-    this.coursesService.deleteCourse(id).pipe().subscribe(courses =>  this.courses = courses);
-  }
+  // removeCourse(id) {
+  //   this.coursesService.deleteCourse(id).pipe().subscribe(courses =>  this.courses = courses);
+  // }
 }
