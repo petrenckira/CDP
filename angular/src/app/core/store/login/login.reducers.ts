@@ -1,8 +1,24 @@
-import {State, initialState} from './login.state';
 import {CustomActions, ActionTypes} from './login.actions';
-import {IUser} from '../../models/user';
+
+import {User} from '../../models/user';
+
+export interface State {
+  authenticated: boolean;
+  error?: string;
+  loaded: boolean;
+  loading: boolean;
+  user?: User;
+}
+
+export const initialState: State = {
+  authenticated: null,
+  loaded: false,
+  loading: false
+};
+
 
 export function reducer(state: State = initialState, action: CustomActions): State {
+  console.log(state);
   switch (action.type) {
     case ActionTypes.LOGIN:
       return {
@@ -28,21 +44,6 @@ export function reducer(state: State = initialState, action: CustomActions): Sta
         loading: false
       };
 
-    // case ActionTypes.AUTHENTICATED_ERROR:
-    //   return {
-    //     ...state,
-    //     authenticated: false,
-    //     error: action.payload.error.message,
-    //     loaded: true
-    //   };
-    //
-    // case ActionTypes.AUTHENTICATED_SUCCESS:
-    //   return {
-    //     ...state,
-    //     authenticated: action.payload.authenticated,
-    //     loaded: true,
-    //     user: action.payload.user
-    //   };
     default:
       return state;
   }

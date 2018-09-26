@@ -6,7 +6,7 @@ import {Action} from '@ngrx/store';
 
 // import rxjs
 import {Observable} from 'rxjs/Observable';
-import { of } from 'rxjs';
+import {of} from 'rxjs';
 // import {tap} from 'rxjs/internal/operators';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 
@@ -29,7 +29,7 @@ import {
 } from './login.actions';
 
 @Injectable()
-export class UserEffects {
+export class LoginEffects {
   constructor(private actions: Actions,
               private router: Router,
               private userService: LoginService) {
@@ -42,16 +42,24 @@ export class UserEffects {
     switchMap(payload => {
         return this.userService.login(payload.username, payload.password).pipe(
           map(user => new LoginSuccessAction({user: user})),
-          catchError (error => of(new LoginErrorAction({error: error})))
+          catchError(error => of(new LoginErrorAction({error: error})))
         );
       }
     ));
 
-  @Effect({ dispatch: false })
+  @Effect({dispatch: false})
   public loginSuccess: Observable<Action> = this.actions.pipe(
-    ofType<LoginSuccessAction>(ActionTypes.LOGIN_SUCCESS),
+    ofType(ActionTypes.LOGIN_SUCCESS),
     tap((user) => {
       this.router.navigateByUrl('/courses');
+    })
+  );
+
+  @Effect({dispatch: false})
+  public loginError: Observable<Action> = this.actions.pipe(
+    ofType(ActionTypes.LOGIN_ERROR),
+    tap((user) => {
+      this.router.navigateByUrl('/login');
     })
   );
 

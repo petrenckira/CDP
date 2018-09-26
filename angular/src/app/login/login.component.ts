@@ -12,18 +12,13 @@ import {takeWhile, filter} from 'rxjs/internal/operators';
 
 
 // router actions
-import * as RouterActions from '../store/router.actions';
+import * as RouterActions from '../core/store/router.actions';
 
 // login actions
-import * as LoginActions from '../store/login/login.actions';
+import * as LoginActions from '../core/store/login/login.actions';
 
 // reducers
-import {
-  AppState,
-  getAuthenticationError,
-  isAuthenticationLoading,
-  isAuthenticated
-} from '../../app.reducers';
+import * as fromLogin from '../core/store/login/login.state';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +31,7 @@ export class LoginComponent implements OnInit {
   error: Observable<string>;
 
   constructor(private formBuilder: FormBuilder,
-              private store: Store<AppState>) {
+              private store: Store<fromLogin.State>) {
   }
 
   ngOnInit() {
@@ -45,8 +40,8 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    this.error = this.store.pipe(select(getAuthenticationError));
-    this.loading = this.store.pipe(select(isAuthenticationLoading));
+    this.error = this.store.pipe(select(fromLogin.getAuthenticationError));
+    this.loading = this.store.pipe(select(fromLogin.isAuthenticationLoading));
   }
 
   get f() {

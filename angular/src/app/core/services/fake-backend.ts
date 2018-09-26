@@ -10,7 +10,7 @@ import {
 import {Observable, of, throwError} from 'rxjs';
 import {delay, mergeMap, materialize, dematerialize} from 'rxjs/operators';
 
-import {IUser} from '../models/user';
+import {IUser, User} from '../models/user';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -57,11 +57,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       if (request.url.endsWith('/login') && request.method === 'POST') {
         if (request.body.username === user.username && request.body.password === user.password) {
-          let body: IUser = {
-            id: user.id,
+          // let body: IUser = {
+          //   id: user.id,
+          //   username: user.username,
+          //   password: user.password,
+          //   courses: user.courses,
+          //   token: 'fake-jwt-token'
+          // };
+
+          let body: User = {
             username: user.username,
-            password: user.password,
-            courses: user.courses,
             token: 'fake-jwt-token'
           };
           return of(new HttpResponse({status: 200, body}));
@@ -103,10 +108,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let currentUser = JSON.parse(localStorage.getItem('currentUser'));
           let urlParts = request.url.split('/');
           let id = parseInt(urlParts[urlParts.length - 1]);
-          let foundIndex = currentUser.courses.findIndex(course => course.id ===id);
-          currentUser.courses[foundIndex]= request.body;
+          let foundIndex = currentUser.courses.findIndex(course => course.id === id);
+          currentUser.courses[foundIndex] = request.body;
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          return of(new HttpResponse({status: 200, body:  currentUser.courses}));
+          return of(new HttpResponse({status: 200, body: currentUser.courses}));
         } else {
           return throwError({error: {message: 'Unauthorised'}});
         }
@@ -121,7 +126,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           newCourse.id = currentUser.courses.length + 1;
           currentUser.courses.push(newCourse);
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          return of(new HttpResponse({status: 200, body:  currentUser.courses}));
+          return of(new HttpResponse({status: 200, body: currentUser.courses}));
         } else {
           return throwError({error: {message: 'Unauthorised'}});
         }
@@ -135,7 +140,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           let foundIndex = currentUser.courses.findIndex(course => course.id === courseId);
           currentUser.courses.splice(foundIndex, 1);
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
-          return of(new HttpResponse({status: 200, body:  currentUser.courses}));
+          return of(new HttpResponse({status: 200, body: currentUser.courses}));
         } else {
           return throwError({error: {message: 'Unauthorised'}});
         }

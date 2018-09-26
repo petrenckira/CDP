@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 
 /* Feature Modules */
 import {CoursesModule} from './courses/courses.module';
-import {LoginModule} from './core/login/login.module';
+import {LoginModule} from './login/login.module';
 
 /* Routing Module */
 import {AppRoutingModule} from './app-routing.module';
@@ -18,24 +18,22 @@ import {ErrorInterceptor} from './core/services/error.interceptor';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 // @ngrx
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreModule } from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreRouterConnectingModule, RouterStateSerializer} from '@ngrx/router-store';
+import {StoreModule} from '@ngrx/store';
 
-// effects
-import {UserEffects} from './core/store/login/login.effects';
 
 // reducers
 import {reducers} from './app.reducers';
 
 // dev tools
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 @NgModule({
   imports: [
     !environment.production
-      ? StoreDevtoolsModule.instrument({ maxAge: 50 })
+      ? StoreDevtoolsModule.instrument({maxAge: 50})
       : [],
     BrowserModule,
     CoursesModule,
@@ -43,12 +41,12 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([UserEffects]),
-    StoreRouterConnectingModule
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     fakeBackendProvider
   ],
   declarations: [

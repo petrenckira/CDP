@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {IUser} from '../../models/user';
+import {User} from '../../models/user';
 
 export const ActionTypes = {
   LOGIN: '[user] Authenticate',
@@ -52,7 +52,7 @@ export class LoginErrorAction implements Action {
 export class LoginSuccessAction implements Action {
   public type: string = ActionTypes.LOGIN_SUCCESS;
 
-  constructor(public payload: { user: IUser }) {
+  constructor(public payload: { user: User }) {
   }
 }
 

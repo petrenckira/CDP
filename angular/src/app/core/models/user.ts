@@ -7,3 +7,8 @@ export interface IUser {
   courses: Array<ICourse>;
   token?: string;
 }
+
+export interface User {
+  username: string;
+  token: 'fake-jwt-token'
+}
