@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+  <div fxLayout="column" fxLayoutAlign="center center" class="wrapper">
+    <h1>Course info </h1>
+    <div *ngIf="course | async">
+      <app-course-form [course]="course | async" (formReady)="saveCourse ($event)" ></app-course-form>
+    </div>
+  </div>
+</div>
+
+

@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from './../shared/shared.module';
 
-import {CourseComponent} from './../course/course.component';
-import {CoursesComponent} from './courses.component';
+import {CourseComponent} from './containers/course/course.component';
+import {CoursesComponent} from './containers/courses-list/courses.component';
 import {CoursesRoutingModule} from './courses-routing.module';
+import {CourseFormComponent} from './components/course-form/course-form.component';
 
-import {CoursesService} from './courses.service';
+import {CoursesService} from './services/courses.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
@@ -27,7 +28,8 @@ import {reducers} from '../core/store/courses/list/list.state';
   ],
   declarations: [
     CourseComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseFormComponent
   ],
   providers: [
     CoursesService

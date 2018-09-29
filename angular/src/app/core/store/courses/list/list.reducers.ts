@@ -5,12 +5,14 @@ export interface State {
   loaded: boolean;
   loading: boolean;
   courses: ICourse[];
+  current: ICourse;
 }
 
 const initialState: State = {
   loaded: false,
   loading: false,
-  courses: []
+  courses: [],
+  current: null
 };
 
 export function reducer(state = initialState, action: ListActions): State {
@@ -22,11 +24,45 @@ export function reducer(state = initialState, action: ListActions): State {
       };
     }
 
-    case ListActionTypes.LOAD_SUCCESS: {
+    case ListActionTypes.LOAD_SUCCESS:
+    case ListActionTypes.ADD_COURSE_SUCCESS:
+    case ListActionTypes.SAVE_COURSE_SUCCESS: {
       return {
+        ...state,
         loaded: true,
         loading: false,
-        courses: action.payload,
+        courses: action.payload
+      };
+    }
+
+    case ListActionTypes.ADD_COURSE: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case ListActionTypes.GET_COURSE: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case ListActionTypes.GET_COURSE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        current: action.payload
+      };
+    }
+
+    case ListActionTypes.SAVE_COURSE: {
+      return {
+        ...state,
+        loading: true,
+        current: action.payload
       };
     }
 
@@ -42,3 +78,4 @@ export const getLoading = (state: State) => state.loading;
 
 export const getCourses = (state: State) => state.courses;
 
+export const getCurrent = (state: State) => state.current;

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {IUser, User} from '../models/user';
+import {IUser, User} from '../../core/models/user';
 import {catchError} from 'rxjs/internal/operators';
 import {throwError} from 'rxjs';
 import {of} from 'rxjs';

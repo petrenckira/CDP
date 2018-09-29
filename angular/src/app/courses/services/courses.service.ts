@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 // import {IUser} from '../models/user';
-import {ICourse} from '../core/models/course';
+import {ICourse} from '../../core/models/course';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,10 @@ export class CoursesService {
   }
 
   editCourse(id, body) {
-    console.log(body);
     return this.http.post<ICourse>(`/courses/${id}`, body);
   }
 
   createCourse(body) {
-    console.log(body);
     return this.http.post<ICourse>(`/courses/new`, body);
   }
 

@@ -38,4 +38,9 @@ export const getListCourses = createSelector(
   getListState,
   fromList.getCourses
 );
+export const getCurrent = createSelector(
+  getListState,
+  fromList.getCurrent
+);
+
 

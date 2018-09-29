@@ -26,7 +26,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         courses: [
           {
             id: 1,
-            name: 'Course ',
+            name: 'Course 1',
             duration: 123,
             date: new Date(),
             description: 'lorem',
@@ -34,7 +34,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           },
           {
             id: 2,
-            name: 'Course ',
+            name: 'Course 2',
             duration: 123,
             date: new Date(),
             description: 'lorem',
@@ -42,7 +42,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           },
           {
             id: 3,
-            name: 'Course ',
+            name: 'Course 3 ',
             duration: 123,
             date: new Date(),
             description: 'lorem',
@@ -79,10 +79,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.endsWith('/courses') && request.method === 'GET') {
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-          console.log(currentUser.courses);
           return of(new HttpResponse({status: 200, body: currentUser.courses}));
         } else {
-          console.log('its so bad');
           return throwError({error: {message: 'Unauthorised'}});
         }
       }

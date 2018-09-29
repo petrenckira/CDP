@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ICourse} from '../core/models/course';
+import {ICourse} from '../../../core/models/course';
 
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as ListActions from './../core/store/courses/list/list.actions';
-import * as fromList from './../core/store/courses/list/list.state';
+import * as ListActions from '../../../core/store/courses/list/list.actions';
+import * as fromList from '../../../core/store/courses/list/list.state';
 
 
 

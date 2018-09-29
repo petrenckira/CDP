@@ -18,7 +18,6 @@ export const initialState: State = {
 
 
 export function reducer(state: State = initialState, action: CustomActions): State {
-  console.log(state);
   switch (action.type) {
     case ActionTypes.LOGIN:
       return {
