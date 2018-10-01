@@ -47,14 +47,14 @@ export class AddCourseFail implements Action {
 export class RemoveCourse implements Action {
   readonly type = ListActionTypes.REMOVE_COURSE;
 
-  constructor(public payload: ICourse) {
+  constructor(public payload: any) {
   }
 }
 
 export class RemoveCourseSuccess implements Action {
   readonly type = ListActionTypes.REMOVE_COURSE_SUCCESS;
 
-  constructor(public payload: ICourse) {
+  constructor(public payload: ICourse[]) {
   }
 }
 

@@ -26,7 +26,8 @@ export function reducer(state = initialState, action: ListActions): State {
 
     case ListActionTypes.LOAD_SUCCESS:
     case ListActionTypes.ADD_COURSE_SUCCESS:
-    case ListActionTypes.SAVE_COURSE_SUCCESS: {
+    case ListActionTypes.SAVE_COURSE_SUCCESS:
+    case ListActionTypes.REMOVE_COURSE_SUCCESS: {
       return {
         ...state,
         loaded: true,
@@ -63,6 +64,13 @@ export function reducer(state = initialState, action: ListActions): State {
         ...state,
         loading: true,
         current: action.payload
+      };
+    }
+
+    case ListActionTypes.REMOVE_COURSE: {
+      return {
+        ...state,
+        loading: true
       };
     }
 

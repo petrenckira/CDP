@@ -58,8 +58,7 @@ export class CourseComponent implements OnInit {
   saveCourse(form) {
     if (this.id) {
       this.store.dispatch(new ListActions.SaveCourse(form.value));
-    }
-    else {
+    } else {
       this.store.dispatch(new ListActions.AddCourse(form.value));
     }
   }

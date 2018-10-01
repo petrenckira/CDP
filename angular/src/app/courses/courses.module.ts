@@ -16,6 +16,8 @@ import { EffectsModule } from '@ngrx/effects';
 import {ListEffects} from '../core/store/courses/list/list.effects';
 import {reducers} from '../core/store/courses/list/list.state';
 
+import {FilterPipe} from '../core/pipes/filter.pipe';
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,8 @@ import {reducers} from '../core/store/courses/list/list.state';
   declarations: [
     CourseComponent,
     CoursesComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    FilterPipe
   ],
   providers: [
     CoursesService

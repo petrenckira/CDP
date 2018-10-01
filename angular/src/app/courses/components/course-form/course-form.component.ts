@@ -1,11 +1,6 @@
 import {Component, Input, Output, OnInit, OnChanges, SimpleChanges} from '@angular/core';
-import * as fromList from '../../../core/store/courses/list/list.state';
-import {Store} from '@ngrx/store';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as ListActions from '../../../core/store/courses/list/list.actions';
-import {Observable, of, Subscription} from 'rxjs';
 import {ICourse} from '../../../core/models/course';
-import {Router, ActivatedRoute} from '@angular/router';
 import {EventEmitter} from '@angular/core';
 
 @Component({
@@ -18,8 +13,6 @@ export class CourseFormComponent implements OnInit, OnChanges {
   @Output() formReady = new EventEmitter<FormGroup>();
 
   courseForm: FormGroup;
-  loading = false;
-  returnUrl = '/courses';
   error = '';
 
   newCourse: ICourse = {
@@ -52,7 +45,6 @@ export class CourseFormComponent implements OnInit, OnChanges {
       duration: [course.duration, Validators.required],
       date: [course.date, [Validators.required]],
       description: [course.description, [Validators.required]],
-      // authors: [this.course.authors, Validators.required]
     });
   }
 
@@ -69,33 +61,6 @@ export class CourseFormComponent implements OnInit, OnChanges {
     }
 
     this.formReady.emit(this.courseForm);
-
-    // if (this.id) {
-    //   this.coursesService.editCourse(this.id, this.courseForm.value)
-    //     .pipe(first())
-    //     .subscribe(
-    //       data => {
-    //         this.router.navigate([this.returnUrl]);
-    //       },
-    //       error => {
-    //         this.error = error;
-    //         this.loading = false;
-    //       });
-    //   return;
-    // }
-
-    // this.coursesService.createCourse(this.courseForm.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate([this.returnUrl]);
-    //     },
-    //     error => {
-    //       this.error = error;
-    //       this.loading = false;
-    //     });
-
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.courseForm.value));
   }
 
 

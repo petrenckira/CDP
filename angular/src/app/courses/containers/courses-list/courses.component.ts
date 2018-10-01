@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ICourse} from '../../../core/models/course';
 
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
 import * as ListActions from '../../../core/store/courses/list/list.actions';
 import * as fromList from '../../../core/store/courses/list/list.state';
-
 
 
 @Component({
@@ -17,6 +16,7 @@ import * as fromList from '../../../core/store/courses/list/list.state';
 export class CoursesComponent implements OnInit {
 
   courses: Observable<ICourse[]>;
+  searchText: string;
 
   constructor(private store: Store<fromList.State>) {
     this.courses = store.pipe(select(fromList.getListCourses));
@@ -26,7 +26,8 @@ export class CoursesComponent implements OnInit {
     this.store.dispatch(new ListActions.Load());
   }
 
-  // removeCourse(id) {
-  //   this.coursesService.deleteCourse(id).pipe().subscribe(courses =>  this.courses = courses);
-  // }
+
+  removeCourse(id) {
+    this.store.dispatch(new ListActions.RemoveCourse(id));
+  }
 }

@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Action} from '@ngrx/store';
-import {defer, Observable, of} from 'rxjs';
-import {catchError, map, mergeMap, switchMap, toArray} from 'rxjs/operators';
+import { Observable, of} from 'rxjs';
+import {catchError, map, switchMap} from 'rxjs/operators';
 
 import {ICourse} from '../../../models/course';
 import {
   AddCourse, AddCourseFail, AddCourseSuccess, GetCourse, GetCourseFail, GetCourseSuccess, ListActionTypes, Load, LoadFail,
-  LoadSuccess, SaveCourse, SaveCourseFail, SaveCourseSuccess
+  LoadSuccess, RemoveCourse, RemoveCourseFail, RemoveCourseSuccess, SaveCourse, SaveCourseFail, SaveCourseSuccess
 } from './list.actions';
 import {CoursesService} from '../../../../courses/services/courses.service';
 import {Router} from '@angular/router';
@@ -72,6 +72,20 @@ export class ListEffects {
           return new SaveCourseSuccess(courses);
         }),
         catchError(error => of(new SaveCourseFail(error)))
+      );
+    })
+  );
+
+  @Effect()
+  removeCourse: Observable<Action> = this.actions.pipe(
+    ofType<RemoveCourse>(ListActionTypes.REMOVE_COURSE),
+    map(action => action.payload),
+    switchMap((payload) => {
+      return this.coursesService.deleteCourse(payload ).pipe(
+        map((courses: ICourse[]) => {
+          return new RemoveCourseSuccess(courses);
+        }),
+        catchError(error => of(new RemoveCourseFail(error)))
       );
     })
   );

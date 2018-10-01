@@ -15,8 +15,6 @@ import {Router} from '@angular/router';
 // service
 import {LoginService} from '../../../login/services/login.service';
 
-
-
 import {
   ActionTypes,
   LoginAction,

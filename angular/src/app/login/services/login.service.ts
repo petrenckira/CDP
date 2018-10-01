@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {IUser, User} from '../../core/models/user';
+import {User} from '../../core/models/user';
 import {catchError} from 'rxjs/internal/operators';
 import {throwError} from 'rxjs';
 import {of} from 'rxjs';
@@ -28,10 +28,6 @@ export class LoginService {
           return userInfo;
         }),
         catchError(error => throwError(new Error(error))));
-  }
-
-  authenticated(): Observable<boolean> {
-    return of(this._authenticated);
   }
 
   logout(): Observable<boolean> {

@@ -1,18 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 // rxjs
-import {first} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 // ngrx
 import {Store, select} from '@ngrx/store';
-import {takeWhile, filter} from 'rxjs/internal/operators';
-
-
-// router actions
-import * as RouterActions from '../../../core/store/router.actions';
 
 // login actions
 import * as LoginActions from '../../../core/store/login/login.actions';

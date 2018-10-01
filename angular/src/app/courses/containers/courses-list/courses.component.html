@@ -6,7 +6,7 @@
       <mat-card-content>
         <form action="">
           <mat-form-field>
-            <input matInput type="text" placeholder="Search">
+            <input matInput type="text" placeholder="Search" [(ngModel)]="searchText" name="search">
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit" class="btn-search">Search</button>
         </form>
@@ -24,7 +24,7 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center">
   <div class="wrapper" >
     <h1>Courses</h1>
-    <div *ngFor="let course of (courses | async)">
+    <div *ngFor="let course of (courses | async) | filter : searchText">
       <div class="course" fxLayout="row" fxLayoutAlign="space-between stretch">
         <div class="course-info">
           <div fxLayout="row" fxLayoutAlign="space-between baseline">

@@ -123,7 +123,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
           let currentUser = JSON.parse(localStorage.getItem('currentUser'));
           let newCourse = request.body;
-          newCourse.id = currentUser.courses.length + 1;
+          let length = currentUser.courses.length ;
+          currentUser.courses.sort((a, b) => a.id - b.id);
+          newCourse.id = currentUser.courses[length - 1].id + 1;
           currentUser.courses.push(newCourse);
           localStorage.setItem('currentUser', JSON.stringify(currentUser));
           return of(new HttpResponse({status: 200, body: currentUser.courses}));
