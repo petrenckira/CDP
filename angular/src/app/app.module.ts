@@ -1,16 +1,15 @@
-import {BrowserModule} from '@angular/platform-browser'; //move to shared module ????
+import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-/* App Root */
+// App Root
 import {AppComponent} from './app.component';
 
-/* Feature Modules */
+// Feature Modules
 import {CoursesModule} from './courses/courses.module';
 import {LoginModule} from './login/login.module';
 
-/* Routing Module */
+// Routing Module
 import {AppRoutingModule} from './app-routing.module';
-
 import {fakeBackendProvider} from './core/services/fake-backend';
 import {JwtInterceptor} from './core/services/jwt-interceptor';
 import {ErrorInterceptor} from './core/services/error.interceptor';
@@ -19,7 +18,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 // @ngrx
 import {EffectsModule} from '@ngrx/effects';
-import {StoreRouterConnectingModule, RouterStateSerializer} from '@ngrx/router-store';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreModule} from '@ngrx/store';
 
 
